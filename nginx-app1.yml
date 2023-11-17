@@ -1,0 +1,19 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+ name: nginx
+ namespace: argocd
+
+project: default
+source:
+  repoURL: 'https://github.com/aditya2000learning/argocd-test1.git'
+  path: manifests
+  targetRevision: HEAD
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: default
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
